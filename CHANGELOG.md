@@ -1,4 +1,11 @@
 
+## 3.3.3
+
+### Patch Changes
+
+- Fix volume control text sizing bug in layerController. (`@vitessce/layer-controller`) ([#1746](https://github.com/vitessce/vitessce/pull/1746))
+
+
 ## 3.3.2
 
 ### Patch Changes
