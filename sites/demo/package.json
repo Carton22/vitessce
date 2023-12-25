@@ -10,19 +10,28 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
+    "@react-three/drei": "^9.92.5",
+    "@react-three/fiber": "^8.11.5",
+    "@react-three/xr": "^5.7.1",
     "@vitessce/constants-internal": "workspace:*",
     "@vitessce/example-configs": "workspace:*",
     "@vitessce/example-plugins": "workspace:*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "vitessce": "workspace:*"
+    "vitessce": "workspace:*",
+    "three": "^0.150.0"
   },
   "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/three": "^0.150.0",
+    "@vitejs/plugin-basic-ssl": "^1.0.2",
     "@vitejs/plugin-react": "^4.0.0",
     "cypress": "^12.15.0",
     "sass": "^1.55.0",
     "vite": "^4.3.0",
-    "@vitejs/plugin-basic-ssl": "^1.0.2"
+    "eslint": "^8.36.0",
+    "eslint-config-react-app": "^7.0.1"
   },
   "license": "MIT"
 }
