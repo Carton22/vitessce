@@ -3,7 +3,7 @@
   "private": true,
   "version": "3.3.2",
   "scripts": {
-    "start": "vite --port 3000",
+    "start": "vite --port 3000 --host",
     "build-demo": "vite build",
     "preview": "pnpm exec vite preview --port 3000 --host",
     "cypress:open": "cypress open",
