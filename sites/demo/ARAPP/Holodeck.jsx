@@ -5,7 +5,7 @@ import { BackSide, Vector3 } from "three";
 export const Holodeck = memo(() => {
   const size = [6, 4.0, 12.5];
   return (
-    <mesh scale={size} position={[0, size[1] / 2, 0]}>
+    <mesh scale={size} position={[0, 0, 0]}>
       <boxGeometry />
       <shaderMaterial
         args={[

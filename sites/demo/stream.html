@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Stream</title>
+		<link rel="stylesheet" type="text/css" href="stream.css" />
+	</head>
+	<body>
+		<button id="connectionButton">Connect</button>
+		<script type="module">
+			const ws = import.meta.hot;
+			let stream;
+			let pc; // Declare pc as a global variable
+
+			function updateButtonState(isConnected) {
+				const button = document.getElementById("connectionButton");
+				if (isConnected) {
+					button.textContent = "Disconnect";
+					button.style.backgroundColor = "rgb(255, 90, 90)"; // Set to pink color for disconnect
+				} else {
+					button.textContent = "Connect";
+					button.style.backgroundColor = "#007AFF"; // Set to blue color for connect
+				}
+			}
+
+			async function connect() {
+				if (stream) {
+					// Reset stream if it already exists
+					pc.close();
+					pc = null;
+					stream.getTracks().forEach((track) => track.stop());
+					stream = null;
+					console.log("disconnect");
+					updateButtonState(false);
+				} else {
+					stream = await navigator.mediaDevices.getDisplayMedia({
+						video: { frameRate: 30, displaySurface: "monitor" },
+					});
+
+					pc = new RTCPeerConnection();
+					stream.getTracks().forEach((track) => pc.addTrack(track, stream));
+
+					// Send an SDP offer
+					const offer = await pc.createOffer();
+					pc.setLocalDescription(offer);
+					ws.send("rtc:offer", JSON.stringify(offer));
+
+					// Receive the SDP answer
+					ws?.on("rtc:answer", async (data) => {
+						await pc.setRemoteDescription(JSON.parse(data));
+						console.log("remote display stream started");
+					});
+
+					// Send ICE candidate messages
+					pc.addEventListener("icecandidate", (e) => {
+						if (e.candidate) ws.send("rtc:ice", JSON.stringify(e.candidate));
+					});
+
+					// Receive ICE candidate messages
+					ws?.on("rtc:ice", async (data) => {
+						pc.addIceCandidate(new RTCIceCandidate(JSON.parse(data)));
+					});
+
+					updateButtonState(true);
+				}
+			}
+
+			// Listen for connect events
+			ws?.on("rtc:connect", connect);
+			document.querySelector("button").addEventListener("click", connect);
+		</script>
+	</body>
+</html>

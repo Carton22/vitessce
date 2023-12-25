@@ -14,6 +14,7 @@ import {
 	Interactive,
 	VRButton,
 	ARButton,
+	XRButton,
 	XR,
 	Controllers,
 	Hands,
@@ -944,7 +945,25 @@ function Box(props) {
 
 const SpatialWrapper = forwardRef((props, deckRef) => (
 	<div id="ThreeJs" style={{ width: "100%", height: "100%" }}>
-		<ARButton />
+		<XRButton
+				mode="AR"
+				sessionInit={{ optionalFeatures: ["layers"] }}
+				style={{
+					borderRadius: "8px",
+					border: "1px solid transparent",
+					padding: "0.6em 1.2em",
+					fontSize: "1em",
+					fontWeight: 500,
+					fontFamily: "inherit",
+					backgroundColor: "#e3f4ff",
+					cursor: "pointer",
+					position: "absolute",
+					bottom: "10%",
+					left: "50%",
+					transform: "translateX(-50%)",
+					zIndex: 1,
+				  }}
+		/>
 		<Canvas
 			camera={{
 				fov: 45,

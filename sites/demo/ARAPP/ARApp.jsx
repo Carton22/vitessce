@@ -71,7 +71,10 @@ export default function App() {
 				}}
 			/>
 			<Canvas
-				camera={{ position: [0, 3, 2], rotation: [0, 0, 0] }}
+				camera={{
+					position: [0, 0, 0],
+					rotation: [0, 1, 0],
+				}}
 			>
 				<XR>
 					<Interactive
@@ -129,7 +132,7 @@ export default function App() {
 						{/* {screen} */}
 					</Interactive>
 					{/* to remove the black and yello background, you just need to annotate the below code*/}
-					{/* <Holodeck /> */}
+					<Holodeck />
 					{lights}
 					<RetriveObject
 						intersectPointX={intersectX}
@@ -179,4 +182,3 @@ const screen = (
 	</mesh>
 	// </MoveScreen>
 );
-

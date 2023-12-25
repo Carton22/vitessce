@@ -26,7 +26,7 @@ export default defineConfig({
       input: {
         main: "index.html",
         stream: "stream.html",
-        desktop: 'desktop.html'
+        desktop: 'webXR.html'
       },
     },
   },

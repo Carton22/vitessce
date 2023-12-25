@@ -16,7 +16,7 @@ import { video } from "./connectRemoteDisplay";
 export function RemoteDisplay({
 	centralAngle = Math.PI / 10,
 	radius = 2.4,
-	transform = new XRRigidTransform({ x: 0, y: 1.13, z: 1.35 }),
+	transform = new XRRigidTransform({ x: 0, y: 0, z: 1.35 }),
 }) {
 	const renderer = useThree((s) => s.gl);
 	const isPresenting = useXR((s) => s.isPresenting);
