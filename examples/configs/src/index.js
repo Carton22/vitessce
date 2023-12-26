@@ -127,6 +127,7 @@ export const configs = {
 // (http://localhost:3000 or dev.vitessce.io).
 // To adjust the list for the docs site, see docs/src/pages/_DemoList.js
 export const publicConfigs = [
+  'three-minimal',
   'codeluppi-2018',
   'eng-2019',
   'wang-2018',

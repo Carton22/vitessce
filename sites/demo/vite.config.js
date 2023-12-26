@@ -48,7 +48,8 @@ function rtcMessaging() {
       forwardMessage("rtc:offer");
       forwardMessage("rtc:answer");
       forwardMessage("rtc:ice");
-      forwardMessage("rtc:connect");
+      forwardMessage("rtc:htmlconnect");
+      forwardMessage("rtc:jsconnect");
     },
   };
 }

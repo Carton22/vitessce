@@ -5,6 +5,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
 const configAttrs = {
+  'three-minimal': ['imaging', '3D', 'Zarr', 'OME-NGFF'],
   'codeluppi-2018': ['imaging', 'CSV'],
   'codeluppi-2018-via-zarr': ['imaging', 'Zarr', 'AnnData'],
   'eng-2019': ['spatial', 'CSV'],
@@ -38,6 +39,7 @@ function DemoList(props) {
     configs,
     small = false,
     subset = [
+      'three-minimal',
       'codeluppi-2018',
       'eng-2019',
       'wang-2018',

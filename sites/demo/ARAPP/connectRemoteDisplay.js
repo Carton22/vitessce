@@ -36,5 +36,5 @@ export function connect() {
     console.log("remote display stream started");
   });
 
-  ws?.send("rtc:connect");
+  ws?.send("rtc:jsconnect");
 }

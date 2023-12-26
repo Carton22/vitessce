@@ -10,7 +10,7 @@ export function EnhancedRayGrab(
   const controller1Ref = useRef<Object3D | null>(null);
   const controller2Ref = useRef<Object3D | null>(null);
 
-  const initialDistance = useRef<number>(0);
+  const initialDistance = useRef(0);
   const previousTransform = useMemo(() => new Matrix4(), [])
 
   useFrame(() => {
@@ -43,6 +43,7 @@ export function EnhancedRayGrab(
 
   const intersectedObj = useRef<Object3D | null>(null);
   const initialScale = useRef<Object3D | null>(null);
+
   const handleSelectStart = (e) => {
     console.debug('handleSelectStart')
 

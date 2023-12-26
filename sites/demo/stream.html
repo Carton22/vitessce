@@ -9,6 +9,7 @@
 			const ws = import.meta.hot;
 			let stream;
 			let pc; // Declare pc as a global variable
+			const currentPage = null;
 
 			function updateButtonState(isConnected) {
 				const button = document.getElementById("connectionButton");
@@ -22,6 +23,8 @@
 			}
 
 			async function connect() {
+				
+
 				if (stream) {
 					// Reset stream if it already exists
 					pc.close();
@@ -30,16 +33,20 @@
 					stream = null;
 					console.log("disconnect");
 					updateButtonState(false);
-				} else {
+				} 
+				else {
 					stream = await navigator.mediaDevices.getDisplayMedia({
 						video: { frameRate: 30, displaySurface: "monitor" },
 					});
+					console.log(stream.getVideoTracks());
 
 					pc = new RTCPeerConnection();
 					stream.getTracks().forEach((track) => pc.addTrack(track, stream));
 
 					// Send an SDP offer
 					const offer = await pc.createOffer();
+					// Add the page identifier to the offer
+					// offer.pageIdentifier = navigator.;
 					pc.setLocalDescription(offer);
 					ws.send("rtc:offer", JSON.stringify(offer));
 
@@ -64,7 +71,8 @@
 			}
 
 			// Listen for connect events
-			ws?.on("rtc:connect", connect);
+			ws?.on("rtc:htmlconnect", connect);
+			// the connect may be the first connect or re-connect
 			document.querySelector("button").addEventListener("click", connect);
 		</script>
 	</body>

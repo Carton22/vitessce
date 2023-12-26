@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { OrbitControls } from "@react-three/drei";
 import React from "react";
+import Painter from "./Painter";
 const ws = import.meta.hot;
 export const WS_EVENT = "click:event";
 export let objectsToShow = [];
@@ -57,6 +58,8 @@ export default function App() {
 	const [intersectX, setIntersectX] = useState(0);
 	const [intersectY, setIntersectY] = useState(0);
 	const orbitRef = useRef(null);
+	const controller1 = useRef();
+  	const controller2 = useRef();
 	return (
 		<div id="ThreeJs" style={{ width: "100%", height: "100%" }}>
 			<XRButton
@@ -123,13 +126,11 @@ export default function App() {
 							// only send event for the right controller
 							// if (e.target.index !== 0) return;
 							ws?.send(WS_EVENT, { type: "move", data: e.intersection?.uv });
-							setHandDeltaZ(
-								e.target.controller.position.z - initialHandPosition.z
-							);
 						}}
 					>
-						{import.meta.env.DEV && <RemoteDisplay />}
-						{/* {screen} */}
+						{/* {import.meta.env.DEV && <RemoteDisplay />} */}
+						{screen}
+						<Painter />
 					</Interactive>
 					{/* to remove the black and yello background, you just need to annotate the below code*/}
 					<Holodeck />
